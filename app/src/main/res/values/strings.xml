@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="str">Tian Panpan Happy Birthday!</string>
-    <string name="btn">Button</string>
     <string name="action_settings">setting</string>
+    <string name="from">Your friend</string>
+    <string name="btn">button</string>
 </resources>
