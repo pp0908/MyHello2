@@ -1,7 +1,21 @@
 <resources>
     <string name="app_name">My Application</string>
-    <string name="str">Tian Panpan Happy Birthday!</string>
+    <string name="str">TextView</string>
     <string name="action_settings">setting</string>
     <string name="from">Your friend</string>
     <string name="btn">button</string>
+    <string name="strr"> editView</string>
+    <string name="hello" translatable="false"> Hello</string>
+    <string name="hint_txt">Input your name</string>
+    <string name="lable_add1">+1 point</string>
+    <string name="lable_add2">+2 points</string>
+    <string name="lable_add3">+3 points</string>
+    <string name="btn_reset_lable">Rreset</string>
+    <string name="btn_dollar_lable">Dollar</string>
+    <string name="rmb_hint">Input RMB</string>
+    <string name="btn_euro_lable">Euro</string>
+    <string name="btn_won_lable">Won</string>
+    <string name="btn_opencfg_lable">Config</string>
+    <string name="btn_save_lable">Save</string>
+    <string name="menu_set_lable">setting</string>
 </resources>
