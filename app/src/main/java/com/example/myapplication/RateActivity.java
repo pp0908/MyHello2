@@ -33,6 +33,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class RateActivity extends AppCompatActivity implements Runnable {
 
@@ -58,14 +61,29 @@ public class RateActivity extends AppCompatActivity implements Runnable {
         dollarRate =  sharedPreferences.getFloat("dollar_rate",0.0f);
         euroRate =  sharedPreferences.getFloat("euro_rate",0.0f);
         wonRate =  sharedPreferences.getFloat("won_rate",0.0f);
+        updateDate = sharedPreferences.getString("update-date", "");
+
+        //获取当前系统时间
+        Date today = Calendar.getInstance().getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd");
+        final String todayStr = sdf.format(today);
 
         Log.i(TAG,"onCreate: sp dollarRate=" + dollarRate);
         Log.i(TAG,"onCreate: sp euroRate=" + euroRate);
         Log.i(TAG,"onCreate: sp wonRate=" + wonRate);
+        Log.i(TAG,"onCreate: sp updateDate=" +updateDate );
+        Log.i(TAG,"onCreate: sp todayStr=" +todayStr );
 
-        //开启子线程
-        Thread t = new Thread(this);
-        t.start();
+        //判断时间
+        if(!todayStr.equals(updateDate)){
+            Log.i(TAG,"onCreate:需要更新");
+            //开启子线程
+            Thread t = new Thread(this);
+            t.start();
+        }else {
+            Log.i(TAG,"onCreate:不需要更新");
+        }
+
 
         handler = new Handler(){
             @Override
@@ -74,6 +92,15 @@ public class RateActivity extends AppCompatActivity implements Runnable {
                     String str = (String)msg.obj;
                     Log.i(TAG,"handlerMessage: getMessage msg = " + str);
                     show.setText(str);
+
+                    //保存更新的日期
+                    SharedPreferences sharedPreferences = getSharedPreferences("myrate", Activity.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("update-date",todayStr);
+                    editor.putFloat("dollar_rate",dollarRate);
+                    editor.putFloat("euro_rate",euroRate);
+                    editor.putFloat("won_rate",wonRate);
+                    editor.apply();
                 }
                 super.handleMessage(msg);
             }
