@@ -106,7 +106,6 @@ public class RateActivity extends AppCompatActivity implements Runnable {
             }
         };
 
-
     }
 
     public void onClick(View btn){
