@@ -34,7 +34,7 @@ public class MyList2Activity extends ListActivity {
 
         listItemAdapter = new SimpleAdapter(this,listItems,R.layout.list_item,
                 new String[]{"ItemTile","ItemDetail"},
-                new int[]{R.id.itemTitle,R.id.itemDetile
+                new int[]{R.id.itemTitle,R.id.itemTitle
         });
     }
 }

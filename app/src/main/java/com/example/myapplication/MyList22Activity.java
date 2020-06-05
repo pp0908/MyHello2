@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MyList22Activity extends ListActivity implements Runnable, AdapterView.OnItemClickListener {
+public class MyList22Activity extends ListActivity implements Runnable, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener{
 
     private  String TAG = "mylist2";
     Handler handler;
@@ -60,6 +61,7 @@ public class MyList22Activity extends ListActivity implements Runnable, AdapterV
 
         };
         getListView().setOnItemClickListener(this);
+        getListView().setOnItemLongClickListener(this);
     }
 
 
@@ -125,5 +127,14 @@ public class MyList22Activity extends ListActivity implements Runnable, AdapterV
         rateCalc.putExtra("title",titlestr);
         rateCalc.putExtra("rate",Float.parseFloat(detailstr));
         startActivity(rateCalc);
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.i(TAG,"onItemLongClick :长按列表项position="+position );
+        //删除操作
+        //.....
+        return true;
+
     }
 }
