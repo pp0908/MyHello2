@@ -20,3 +20,4 @@ public class MyListActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
 }
+
