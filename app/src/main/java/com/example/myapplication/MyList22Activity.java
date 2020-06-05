@@ -33,6 +33,7 @@ public class MyList22Activity extends ListActivity {
             map.put("ItemDetail","detail:" + i);//详情描述
         }
 
+
         //生成适配器的Item和动态数组对应的元素
         listItemAdapter = new SimpleAdapter(this,listItems,//listItems 数据源
                 R.layout.list_item,
