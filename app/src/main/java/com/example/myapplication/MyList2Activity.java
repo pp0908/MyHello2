@@ -1,8 +1,5 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.LauncherActivity;
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,7 +19,7 @@ public class MyList2Activity extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_list2);
+        setContentView(R.layout.list_item);
 
     }
     private void initListView(){
@@ -35,7 +32,7 @@ public class MyList2Activity extends ListActivity {
 
         }
 
-        listItemAdapter = new SimpleAdapter(this,listItems,R.layout.activity_my_list2,
+        listItemAdapter = new SimpleAdapter(this,listItems,R.layout.list_item,
                 new String[]{"ItemTile","ItemDetail"},
                 new int[]{R.id.itemTitle,R.id.itemDetile
         });
