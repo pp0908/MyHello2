@@ -23,5 +23,6 @@ public class RateCalcActivity extends AppCompatActivity {
 
         ((TextView) findViewById(R.id.title2)).setText(title);
 
+
     }
 }
