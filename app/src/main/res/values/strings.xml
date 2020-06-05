@@ -18,4 +18,5 @@
     <string name="btn_opencfg_lable">Config</string>
     <string name="btn_save_lable">Save</string>
     <string name="menu_set_lable">setting</string>
+    <string name="hint_add1_lable">请输入关键字</string>
 </resources>
