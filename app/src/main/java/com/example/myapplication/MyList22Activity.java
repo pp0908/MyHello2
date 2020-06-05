@@ -40,5 +40,6 @@ public class MyList22Activity extends ListActivity {
                 new String[]{"ItemTitle","ItemDetail"},
                 new int[]{R.id.itemTitle,R.id.itemDetail}
                 );
+
     }
 }
