@@ -61,8 +61,6 @@ public class RateActivity extends AppCompatActivity implements Runnable {
         dollarRate =  sharedPreferences.getFloat("dollar_rate",0.0f);
         euroRate =  sharedPreferences.getFloat("euro_rate",0.0f);
         wonRate =  sharedPreferences.getFloat("won_rate",0.0f);
-        updateDate = sharedPreferences.getString("update-date", "");
-
         //获取当前系统时间
         Date today = Calendar.getInstance().getTime();
         SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd");
@@ -71,18 +69,13 @@ public class RateActivity extends AppCompatActivity implements Runnable {
         Log.i(TAG,"onCreate: sp dollarRate=" + dollarRate);
         Log.i(TAG,"onCreate: sp euroRate=" + euroRate);
         Log.i(TAG,"onCreate: sp wonRate=" + wonRate);
-        Log.i(TAG,"onCreate: sp updateDate=" +updateDate );
         Log.i(TAG,"onCreate: sp todayStr=" +todayStr );
 
         //判断时间
-        if(!todayStr.equals(updateDate)){
-            Log.i(TAG,"onCreate:需要更新");
+
             //开启子线程
             Thread t = new Thread(this);
             t.start();
-        }else {
-            Log.i(TAG,"onCreate:不需要更新");
-        }
 
 
         handler = new Handler(){
@@ -192,6 +185,10 @@ public class RateActivity extends AppCompatActivity implements Runnable {
             //startActivity(config);
             startActivityForResult(config,1);
 
+        }else if(item.getItemId()==R.id.open_list){
+            //打开列表窗口
+            Intent list = new Intent(this,RateListActivity.class);
+            startActivity(list );
         }
         return super.onOptionsItemSelected(item);
     }
@@ -216,35 +213,7 @@ public class RateActivity extends AppCompatActivity implements Runnable {
         /**
          *从bankofchina获取数据
          */
-        private Bundle getFromBoc(){
-            Bundle bundle = new Bundle();
-            Document doc = null;
-            try{
-                doc = Jsoup.connect("http://www.usd-cny.com/bankofchina.htm").get();
-                Elements tables = doc.getElementsByTag("table");
-                Element table6 = tables.get(5);
-                Elements tds = table6.getElementsBytag("td");
-                for(int i = 0;i<tds.size();i+=8){
-                    Element td1 = tds.get(i);
-                    Element td2 = tds.get(i+5);
 
-                    String str1 = td1.text();
-                    String val = td2.text();
-
-                    if("美元".equals(str1)){
-                        bundle.putFloat("dollar-rate",100f/Float.parseFloat(val));
-                    }else if("欧元".equals(str1)){
-                        bundle.putFloat("euro-rate",100f/Float.parseFloat(val));
-                    }else if("韩元".equals(str1)){
-                        bundle.putFloat("won-rate",100f/Float.parseFloat(val));
-                    }
-                }
-
-            }catch(IOException e){
-                e.printStackTrace();
-            }
-            return bundle;
-        }
 
         //获取网络数据
         URL url = null;

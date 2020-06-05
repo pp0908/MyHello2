@@ -132,8 +132,6 @@ public class SearchActivity<RateListActivity> extends AppCompatActivity implemen
     }
     SharedPreferences sp = getSharedPreferences("myrate", Activity.MODE_PRIVATE);
     SharedPreferences.Editor editor = sp.edit();
-    editor.putString("result"+ result);
-    editor.apply();
 
 
 }
